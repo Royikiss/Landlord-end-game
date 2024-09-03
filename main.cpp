@@ -56,7 +56,7 @@ void read(FILE *fin, int *arr) {
 
 void read_data() {
     FILE *fin = fopen("input", "r");        // Default input file was named "input".
-    read(fin, a);
+    read(fin, a);                           // Read your own and opponent's cards
     read(fin, b);
     fclose(fin);
     return;
