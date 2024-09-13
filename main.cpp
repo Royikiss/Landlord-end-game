@@ -131,8 +131,8 @@ inline void init() {
 }
 
 int main() {
-    init();
-    rule();
-    output_solve(root, a, b);
+    init();                         // 生成博弈树等一系列操作,真正的结果已经算出来了
+    rule();                         // 规则提示等显示
+    output_solve(root, a, b);       // 在博弈树上的节点出跳动
     return 0;
 }

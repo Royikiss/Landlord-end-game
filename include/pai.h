@@ -10,21 +10,24 @@
 #define _PAI_H__
 
 #include <iostream>
+#include <ostream>
 #include <vector>
 #define MAX_N 18
 using namespace std;
 
 enum class PAI_TYPE {
-  DAN_TYPE,
-  DUIZI_TYPE,
-  SHUNZI_TYPE,
-  LIANDUI_TYPE,
-  SANDAI_TYPE,
-  ZHADAN_TYPE,
-  WANGZHA_TYPE,
-  PASS_TYPE,
+  DAN_TYPE,                         // 单张
+  DUIZI_TYPE,                       // 对子
+  SHUNZI_TYPE,                      // 顺子
+  LIANDUI_TYPE,                     // 连对
+  SANDAI_TYPE,                      // 三带一
+  SIDAI_TYPE,                       // 四带二 (new)
+  ZHADAN_TYPE,                      // 炸弹
+  WANGZHA_TYPE,                     // 王炸
+  PASS_TYPE,                        // pass
 };
 
+// 牌的基类
 class PAI {
 public:
   PAI(PAI_TYPE type);
@@ -111,6 +114,19 @@ public:
 private:
   int x;
   PAI *dai;
+};
+
+class SIDAI : public PAI {
+public:
+    SIDAI(int x, PAI *dai1, PAI *dai2);
+    ostream &output() override;
+    bool operator>(PAI *pre) override;
+    void take(int *) override;
+    void back(int *) override;
+    static vector<PAI *> get(int *arr);
+private:
+    int x;
+    PAI *dai1, *dai2;           // 可以是两张单张或两对子
 };
 
 class ZHADAN : public PAI {
